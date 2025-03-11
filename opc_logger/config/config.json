@@ -1,0 +1,27 @@
+{
+    "opc_server": {
+        "url": "opc.tcp://localhost:4840",
+        "username": "",
+        "password": ""
+    },
+    "logging": {
+        "interval_seconds": 60,
+        "output_format": "csv",
+        "output_path": "./data/production"
+    },
+    "auto_mode": {
+        "enabled": false,
+        "start_time": "08:00",
+        "end_time": "17:00",
+        "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+        ]
+    },
+    "security": {
+        "password_hash": ""
+    }
+}

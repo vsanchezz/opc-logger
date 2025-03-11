@@ -1,0 +1,8 @@
+Instrucciones para configurar el path de destino:
+
+1. Ejecute la aplicación
+2. Vaya a Configuración > Logging
+3. Seleccione el formato de salida (CSV o XLSX)
+4. Seleccione el intervalo de logging en segundos
+5. Seleccione la carpeta de destino
+6. Haga clic en 'Guardar'

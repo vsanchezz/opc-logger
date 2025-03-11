@@ -1,0 +1,8 @@
+Instrucciones para habilitar el modo automático:
+
+1. Ejecute la aplicación
+2. Vaya a Configuración > Modo Automático
+3. Active la opción 'Habilitar modo automático'
+4. Seleccione la hora de inicio y fin
+5. Seleccione los días de la semana
+6. Haga clic en 'Guardar'

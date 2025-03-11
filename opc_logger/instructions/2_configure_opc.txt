@@ -1,0 +1,7 @@
+Instrucciones para configurar el servidor OPC:
+
+1. Ejecute la aplicación
+2. Vaya a Configuración > Servidor OPC
+3. Ingrese la URL del servidor OPC
+4. Si es necesario, ingrese el nombre de usuario y contraseña
+5. Haga clic en 'Guardar'

@@ -1,0 +1,6 @@
+Instrucciones para generar el hash de la contraseña:
+
+1. Ejecute la aplicación
+2. Vaya a Configuración > Seguridad
+3. Ingrese la contraseña deseada y haga clic en 'Generar Hash'
+4. Copie el hash generado y péguelo en el archivo config.json

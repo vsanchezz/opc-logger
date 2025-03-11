@@ -1,0 +1,73 @@
+opc_logger/
+│
+├── config/
+│   ├── config.json         # Configuración principal
+│   └── mapping.json        # Mapeo de nodos OPC
+│
+├── data/
+│   ├── logs/               # Logs de errores
+│   │   └── error_log.txt
+│   ├── backups/            # Copias de seguridad
+│   └── production/         # Datos recopilados
+│       └── 2025/
+│           └── 03/...
+│
+├── instructions/           # Instrucciones para el usuario
+│   ├── 1_generate_hash.txt
+│   ├── 2_configure_opc.txt
+│   ├── 3_map_nodes.txt
+│   ├── 4_set_logging_path.txt
+│   └── 5_enable_auto_mode.txt
+│
+├── src/                    # Código fuente
+│   ├── __init__.py
+│   │
+│   ├── opc/                # Módulo para comunicación OPC
+│   │   ├── __init__.py
+│   │   ├── client.py       # Cliente OPC
+│   │   └── nodes.py        # Manejo de nodos OPC
+│   │
+│   ├── logging/            # Módulo para logging
+│   │   ├── __init__.py
+│   │   ├── data_logger.py  # Logging de datos
+│   │   └── error_logger.py # Logging de errores
+│   │
+│   ├── gui/                # Módulo para la interfaz gráfica
+│   │   ├── __init__.py
+│   │   ├── main_window.py  # Ventana principal
+│   │   │
+│   │   ├── components/     # Componentes de la GUI
+│   │   │   ├── __init__.py
+│   │   │   ├── status_bar.py
+│   │   │   ├── control_panel.py
+│   │   │   ├── data_display.py
+│   │   │   └── settings_tab.py
+│   │   │
+│   │   └── dialogs/        # Diálogos de la GUI
+│   │       ├── __init__.py
+│   │       ├── connection_dialog.py
+│   │       └── settings_dialog.py
+│   │
+│   ├── utils/              # Utilidades
+│   │   ├── __init__.py
+│   │   ├── config.py       # Manejo de configuración
+│   │   ├── file_handler.py # Manejo de archivos
+│   │   └── auth.py         # Autenticación y seguridad
+│   │
+│   └── auto_mode/          # Modo automático
+│       ├── __init__.py
+│       ├── scheduler.py    # Programador de tareas
+│       └── controller.py   # Controlador del modo automático
+│
+├── tests/                  # Pruebas unitarias
+│   ├── __init__.py
+│   ├── opc/
+│   ├── logging/
+│   ├── gui/
+│   ├── utils/
+│   └── auto_mode/
+│
+├── main.py                 # Punto de entrada principal
+├── requirements.txt        # Dependencias
+├── README.md               # Documentación
+└── setup.py                # Script para empaquetar

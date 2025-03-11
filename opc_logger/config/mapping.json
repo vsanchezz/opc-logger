@@ -1,0 +1,16 @@
+{
+    "nodes": [
+        {
+            "node_id": "ns=2;s=Temperature",
+            "display_name": "Temperature_Zone1",
+            "unit": "\u00b0C",
+            "description": "Temperature in Zone 1"
+        },
+        {
+            "node_id": "ns=2;s=Pressure",
+            "display_name": "Pressure_Tank1",
+            "unit": "bar",
+            "description": "Pressure in Tank 1"
+        }
+    ]
+}

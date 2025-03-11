@@ -1,0 +1,8 @@
+Instrucciones para mapear nodos OPC a nombres amigables:
+
+1. Ejecute la aplicación
+2. Vaya a Configuración > Mapeo de Nodos
+3. Haga clic en 'Explorar Servidor' para ver los nodos disponibles
+4. Seleccione los nodos que desea mapear
+5. Asigne nombres amigables, unidades y descripciones
+6. Haga clic en 'Guardar'
