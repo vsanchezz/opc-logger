@@ -5,6 +5,7 @@ from src.gui.components.sidebar import Sidebar
 from src.gui.components.status_bar import StatusBar
 from src.gui.components.main_frame import MainFrame
 from src.gui.components.settings_frame import SettingsFrame
+from src.gui.components.title_frame import TitleFrame
 from src.gui.app_controller import AppController
 
 class MainWindow(ctk.CTk):
@@ -13,7 +14,7 @@ class MainWindow(ctk.CTk):
 
         # Configuración básica
         ctk.set_appearance_mode("dark")
-        ctk.set_default_color_theme("blue")
+        ctk.set_default_color_theme("dark-blue")
 
         self.title("OPC Data Logger")
         self.geometry("1000x700")
@@ -30,12 +31,17 @@ class MainWindow(ctk.CTk):
         self.main_container = ctk.CTkFrame(self)
         self.main_container.pack(fill="both", expand=True, padx=10, pady=10)
 
+        # Frame titulo
+        self.title_frame = TitleFrame(self.main_container, fg_color = 'gray10')
+        self.title_frame.pack(side="top", fill="x", padx=10, pady=10)
+        
         # Barra lateral
         self.sidebar = Sidebar(
             self.main_container,
-            show_frame_callback=self.controller.show_frame
+            show_frame_callback=self.controller.show_frame,
+            corner_radius = 0
         )
-        self.sidebar.pack(side="left", fill="y", padx=(0, 10), pady=0)
+        self.sidebar.pack(side="left", fill="y", padx=(10, 0), pady=0)
 
         # Contenedor para los frames de contenido
         self.content_container = ctk.CTkFrame(self.main_container)
@@ -45,7 +51,7 @@ class MainWindow(ctk.CTk):
         self.frames = {}
 
         # Frame principal
-        self.frames["main"] = MainFrame(self.content_container)
+        self.frames["main"] = MainFrame(self.content_container, corner_radius = 0)
         self.frames["main"].set_callbacks(
             on_connection_change=self.controller.toggle_connection,
             on_logging_start=self.controller.start_logging,
@@ -53,7 +59,7 @@ class MainWindow(ctk.CTk):
         )
 
         # Frame de configuración
-        self.frames["settings"] = SettingsFrame(self.content_container)
+        self.frames["settings"] = SettingsFrame(self.content_container, corner_radius = 0)
         self.frames["settings"].set_callbacks(
             on_save_config=self.controller.save_configuration
         )

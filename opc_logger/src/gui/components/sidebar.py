@@ -2,18 +2,10 @@ import customtkinter as ctk
 
 class Sidebar(ctk.CTkFrame):
     def __init__(self, master, show_frame_callback, **kwargs):
-        super().__init__(master, width=200, **kwargs)
+        super().__init__(master, width=150, **kwargs)
 
         self.show_frame_callback = show_frame_callback
         self.current_frame = "main"
-
-        # Título de la aplicación en la barra lateral
-        self.app_title = ctk.CTkLabel(
-            self,
-            text="OPC Data Logger",
-            font=("Arial", 16, "bold")
-        )
-        self.app_title.pack(pady=(20, 30))
 
         # Botones de navegación
         self.main_button = ctk.CTkButton(
@@ -25,14 +17,14 @@ class Sidebar(ctk.CTkFrame):
             corner_radius=0,
             fg_color="transparent",
             text_color=("gray10", "gray90"),
-            hover_color=("gray70", "gray30")
+            hover_color=("gray75", "gray30")
         )
         self.main_button.pack(pady=(0, 5))
 
         self.settings_button = ctk.CTkButton(
             self,
             text="Settings",
-            command=lambda: self.navigate_to("settings"),
+            command=lambda:self.navigate_to("settings"),
             width=180,
             height=40,
             corner_radius=0,
@@ -53,5 +45,5 @@ class Sidebar(ctk.CTkFrame):
 
     def update_active_button(self, frame_name):
         """Actualizar el estilo del botón activo"""
-        self.main_button.configure(fg_color=("gray75", "gray25") if frame_name == "main" else "transparent")
-        self.settings_button.configure(fg_color=("gray75", "gray25") if frame_name == "settings" else "transparent")
+        self.main_button.configure(fg_color=("gray75", "gray10") if frame_name == "main" else "transparent")
+        self.settings_button.configure(fg_color=("gray75", "gray10") if frame_name == "settings" else "transparent")
