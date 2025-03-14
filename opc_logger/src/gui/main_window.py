@@ -13,10 +13,10 @@ class MainWindow(ctk.CTk):
         super().__init__()
 
         # Configuración básica
-        ctk.set_appearance_mode("dark")
+        ctk.set_appearance_mode("light")
         ctk.set_default_color_theme("dark-blue")
 
-        self.title("OPC Data Logger")
+        self.title("Data Logger")
         self.geometry("1000x700")
         self.minsize(800, 600)
 
@@ -29,11 +29,11 @@ class MainWindow(ctk.CTk):
     def create_widgets(self):
         # Frame principal que contiene todo
         self.main_container = ctk.CTkFrame(self)
-        self.main_container.pack(fill="both", expand=True, padx=10, pady=10)
+        self.main_container.pack(fill="both", expand=True, padx=0, pady=0)
 
         # Frame titulo
-        self.title_frame = TitleFrame(self.main_container, fg_color = 'gray10')
-        self.title_frame.pack(side="top", fill="x", padx=10, pady=10)
+        self.title_frame = TitleFrame(self.main_container)
+        self.title_frame.pack(side="top", fill="x")
         
         # Barra lateral
         self.sidebar = Sidebar(
@@ -41,7 +41,7 @@ class MainWindow(ctk.CTk):
             show_frame_callback=self.controller.show_frame,
             corner_radius = 0
         )
-        self.sidebar.pack(side="left", fill="y", padx=(10, 0), pady=0)
+        self.sidebar.pack(side="left", fill="y", padx=(0, 0), pady=0)
 
         # Contenedor para los frames de contenido
         self.content_container = ctk.CTkFrame(self.main_container)
@@ -51,7 +51,7 @@ class MainWindow(ctk.CTk):
         self.frames = {}
 
         # Frame principal
-        self.frames["main"] = MainFrame(self.content_container, corner_radius = 0)
+        self.frames["main"] = MainFrame(self.content_container, corner_radius = 0, fg_color='transparent')
         self.frames["main"].set_callbacks(
             on_connection_change=self.controller.toggle_connection,
             on_logging_start=self.controller.start_logging,

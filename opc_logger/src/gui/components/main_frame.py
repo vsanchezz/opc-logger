@@ -9,8 +9,8 @@ class MainFrame(ctk.CTkFrame):
         self.logging_active = False
 
         # Panel de control en la parte superior
-        self.control_panel = ctk.CTkFrame(self, corner_radius=0, fg_color ='gray10')
-        self.control_panel.pack(side = 'bottom', fill="x", padx=(0,10), pady=0)
+        self.control_panel = ctk.CTkFrame(self, corner_radius=0)
+        self.control_panel.pack(side = 'bottom', fill="x", padx=(0,0), pady=0)
 
         # Botón de conexión
         self.connect_button = ctk.CTkButton(
@@ -42,14 +42,15 @@ class MainFrame(ctk.CTkFrame):
         self.stop_button.pack(side="left", padx=10, pady=10)
 
         # Área de visualización de datos
-        self.data_frame = ctk.CTkFrame(self, corner_radius=0, fg_color ='gray10')
-        self.data_frame.pack(fill="both", expand=True, padx=(0,10), pady=00)
+        self.data_frame = ctk.CTkFrame(self, corner_radius=0)
+        self.data_frame.pack(fill="both", expand=True, padx=(0,0), pady=00)
 
         # Etiqueta para el área de datos
         self.data_label = ctk.CTkLabel(
             self.data_frame,
             text="Collected Data:",
-            anchor="w"
+            anchor="w",
+            
         )
         self.data_label.pack(anchor="w", padx=10, pady=5)
 
