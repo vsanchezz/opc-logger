@@ -2,7 +2,7 @@ import customtkinter as ctk
 
 class ContainerMain(ctk.CTkFrame):
     def __init__(self, master, **kwargs):
-        super().__init__(master, **kwargs)
+        super().__init__(master, fg_color = 'transparent', **kwargs)
 
         # Control panel
         self.control_panel = ctk.CTkFrame(self, corner_radius=0)
