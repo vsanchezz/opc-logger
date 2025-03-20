@@ -12,16 +12,16 @@ class ContainerFrame(ctk.CTkFrame):
         self.event_bus_mw.subscribe("SettingsClicked", self.showSettingsFrame)
 
 
-        self.ContainerMain = ContainerMain(self)
-        self.ContainerSettings = ContainerSettings(self)
+        self.container_main = ContainerMain(self)
+        self.container_settings = ContainerSettings(self)
 
         self.showMainFrame({})
     
     def showMainFrame(self,data):
-        self.ContainerSettings.pack_forget()
-        self.ContainerMain.pack(fill='both', expand=True)
+        self.container_settings.pack_forget()
+        self.container_main.pack(fill='both', expand=True)
     
     def showSettingsFrame(self,data):
-        self.ContainerMain.pack_forget()
-        self.ContainerSettings.pack(fill='both', expand=True)
+        self.container_main.pack_forget()
+        self.container_settings.pack(fill='both', expand=True)
     

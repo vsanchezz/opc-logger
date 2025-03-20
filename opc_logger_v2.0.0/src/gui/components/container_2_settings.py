@@ -6,7 +6,7 @@ class ContainerSettings(ctk.CTkFrame):
 
         # Frame para configuración del servidor
         self.server_frame = ctk.CTkFrame(self, fg_color = 'transparent')
-        self.server_frame.pack(fill="both", padx=10, pady=10)
+        self.server_frame.pack(fill="both", padx=10, pady=5)
 
         # Etiqueta para la dirección del servidor
         self.server_label = ctk.CTkLabel(
@@ -14,7 +14,7 @@ class ContainerSettings(ctk.CTkFrame):
             text="OPC Server Address:",
             anchor="w"
         )
-        self.server_label.pack(anchor="w", padx=10, pady=5)
+        self.server_label.pack(anchor="w", padx=0, pady=5)
 
         # Campo para la dirección del servidor
         self.server_entry = ctk.CTkEntry(
@@ -23,6 +23,23 @@ class ContainerSettings(ctk.CTkFrame):
             placeholder_text="opc.tcp://localhost:4840"
         )
         self.server_entry.pack(anchor="w", padx=10, pady=5)
+
+        # Etiqueta para la frecuencia del logging
+        self.freq_label = ctk.CTkLabel(
+            self.server_frame,
+            text="Logging frequency (s):",
+            anchor="w"
+        )
+        self.freq_label.pack(anchor="w", padx=0, pady=5)
+
+        # Campo para la frequencia del logging
+        self.freq_entry = ctk.CTkEntry(
+            self.server_frame,
+            width=300,
+        )
+        self.freq_entry.pack(anchor="w", padx=10, pady=5)
+
+        
 
         # Frame para selección de variables
         self.variables_frame = ctk.CTkFrame(self, fg_color = 'transparent')

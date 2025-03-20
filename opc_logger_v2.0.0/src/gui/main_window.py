@@ -1,15 +1,19 @@
 import customtkinter as ctk
 
 # Importar componentes
-from src.gui.components.side_frame import SideFrame
-from src.gui.components.status_frame import StatusFrame
-from src.gui.components.container_0_frame import ContainerFrame
-from src.gui.components.title_frame import TitleFrame
-from src.event_bus import EventBus
+from src.gui.components.side_frame          import SideFrame
+from src.gui.components.status_frame        import StatusFrame
+from src.gui.components.container_0_frame   import ContainerFrame
+from src.gui.components.title_frame         import TitleFrame
+from src.event_bus                          import EventBus
+from src.gui.components.config_loader       import ConfigLoader
 
 class MainWindow(ctk.CTk):
-    def __init__(self):
+    def __init__(self, event_bus):
         super().__init__()
+
+        # Event Bus
+        self.event_bus = event_bus
 
         # Configuración básica
         ctk.set_appearance_mode("light")
@@ -19,11 +23,14 @@ class MainWindow(ctk.CTk):
         self.geometry("1000x700")
         self.minsize(800, 600)
 
-        # Event bus
+        # Main Window event bus
         self.event_bus_mw = EventBus()
 
         # Crear widgets
         self.create_widgets()
+
+        # Load configuration
+        self.config_loader = ConfigLoader(self)
 
     def create_widgets(self):
         # Frame principal que contiene todo
@@ -57,4 +64,3 @@ class MainWindow(ctk.CTk):
     # Barra de estado en la parte inferior  
         self.status_bar = StatusFrame(self)
         self.status_bar.pack(fill="x", side="bottom")
-        
