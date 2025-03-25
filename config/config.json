@@ -1,7 +1,7 @@
 {
     "server_ip": "192.168.10.80",
     "port": "4840",
-    "logging_freq": 1,
+    "logging_freq": "2",
     "output_folder": "data",
     "password": ""
 }
