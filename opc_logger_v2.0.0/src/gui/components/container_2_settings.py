@@ -2,9 +2,10 @@ import customtkinter as ctk
 
 class ContainerSettings(ctk.CTkFrame):
     def __init__(self, master, **kwargs):
-        super().__init__(master, **kwargs)
+        super().__init__(master, corner_radius=0, **kwargs)
 
         # Frame para configuración del servidor
+        self.event_bus_mw = master.event_bus_mw
         self.server_frame = ctk.CTkFrame(self, fg_color = 'transparent')
         self.server_frame.pack(fill="both", padx=10, pady=5)
 
@@ -17,12 +18,12 @@ class ContainerSettings(ctk.CTkFrame):
         self.server_label.pack(anchor="w", padx=0, pady=5)
 
         # Campo para la dirección del servidor
-        self.server_entry = ctk.CTkEntry(
+        self.server_ip_entry = ctk.CTkEntry(
             self.server_frame,
             width=300,
             placeholder_text="opc.tcp://localhost:4840"
         )
-        self.server_entry.pack(anchor="w", padx=10, pady=5)
+        self.server_ip_entry.pack(anchor="w", padx=10, pady=5)
 
         # Etiqueta para la frecuencia del logging
         self.freq_label = ctk.CTkLabel(
@@ -38,8 +39,6 @@ class ContainerSettings(ctk.CTkFrame):
             width=300,
         )
         self.freq_entry.pack(anchor="w", padx=10, pady=5)
-
-        
 
         # Frame para selección de variables
         self.variables_frame = ctk.CTkFrame(self, fg_color = 'transparent')
@@ -66,8 +65,20 @@ class ContainerSettings(ctk.CTkFrame):
         self.save_config_button = ctk.CTkButton(
             self.variables_frame,
             text="Save Configuration",
-            #command=self.save_configuration,
+            command= self.save_configuration,
             width=150
         )
         self.save_config_button.pack(side="right", padx=10, pady=10)
+
+    def update_config(self,config):
+        self.server_ip_entry.delete(0,'end')
+        self.server_ip_entry.insert(0,config['server_ip'])
+        self.freq_entry.delete(0,'end')
+        self.freq_entry.insert(0,config['logging_freq'])
+    
+    def save_configuration(self):
+        config = {}
+        config['server_ip'] = self.server_ip_entry.get()
+        config['logging_freq'] = self.freq_entry.get()
+        self.event_bus_mw.publish("SaveConfiguration",config)
 

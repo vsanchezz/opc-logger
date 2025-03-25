@@ -2,8 +2,13 @@ import customtkinter as ctk
 from datetime import datetime
 
 class StatusFrame(ctk.CTkFrame):
-    def __init__(self, master, **kwargs):
+    def __init__(self, master, event_bus_mw, **kwargs):
         super().__init__(master, height=30, **kwargs)
+
+        self.event_bus_mw = event_bus_mw
+
+        # subscribe to event_bus_mw
+        self.event_bus_mw.subscribe('StatusUpdate', self.update_connection_status)
 
         # Indicador de estado de conexión
         self.status_label = ctk.CTkLabel(
@@ -31,7 +36,8 @@ class StatusFrame(ctk.CTkFrame):
         self.time_label.configure(text=current_time)
         self.after(1000, self.update_clock)  # Actualizar cada segundo
 
-    def update_connection_status(self, status):
+    def update_connection_status(self, data):
+        status = data['status']
         """Actualiza el estado de conexión"""
         self.status_label.configure(text=f"Status: {status}")
 
@@ -42,3 +48,4 @@ class StatusFrame(ctk.CTkFrame):
             self.status_label.configure(text_color="orange")
         else:  # Disconnected
             self.status_label.configure(text_color="red")
+

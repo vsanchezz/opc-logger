@@ -4,6 +4,10 @@ class ContainerMain(ctk.CTkFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master, fg_color = 'transparent', **kwargs)
 
+        # events
+        self.event_bus_mw = master.event_bus_mw
+        self.event_bus_mw.subscribe('StatusUpdate', self.status_update)
+
         # Control panel
         self.control_panel = ctk.CTkFrame(self, corner_radius=0)
         self.control_panel.pack(side = 'bottom', fill="x", padx=(0,0), pady=0)
@@ -12,7 +16,7 @@ class ContainerMain(ctk.CTkFrame):
         self.connect_button = ctk.CTkButton(
             self.control_panel,
             text="Connect",
-            #command=self.toggle_connection,
+            command=self.toggle_connection,
             width=120
         )
         self.connect_button.pack(side="left", padx=10, pady=10)
@@ -21,7 +25,7 @@ class ContainerMain(ctk.CTkFrame):
         self.start_button = ctk.CTkButton(
             self.control_panel,
             text="Start Logging",
-            #command=self.start_logging,
+            command=self.start_logging,
             state="disabled",
             width=120
         )
@@ -57,3 +61,31 @@ class ContainerMain(ctk.CTkFrame):
             font=("Consolas", 12)
         )
         self.data_text.pack(fill="both", expand=True, padx=10, pady=5)
+    
+    def toggle_connection(self):
+        if (self.connect_button.cget('text') == 'Connect') :
+            self.connect_button.configure(text='Disconnect')
+            self.event_bus_mw.publish('Connect',{})
+
+        else:
+            self.connect_button.configure(text='Connect')
+            self.event_bus_mw.publish('Disconnect',{})
+    
+    def status_update(self, data):
+        if data['status'] == 'Connected' :
+            self.start_button.configure(state='enabled')
+        
+        elif data['status'] == 'Disconnected' :
+            self.start_button.configure(state='disabled')
+
+    def start_logging(self):
+        self.start_button.configure(state='disabled')
+        self.stop_button.configure(state='enabled')
+        self.event_bus_mw.publish('StartLogging',{})
+    
+    def stop_logging(self):
+        self.start_button.configure(state='enabled')
+        self.stop_button.configure(state='disabled')
+        self.event_bus_mw.publish('StopLogging',{})
+        
+

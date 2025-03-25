@@ -8,7 +8,16 @@ class OpcClient():
         
         self.event_bus = event_bus
         self.status = "Disconnected"
-        self.ip = self.read_ip()
+        self.ip = None
+        self.logging_freq = None
+
+        # suscribe to events
+        self.event_bus.subscribe('ConfigUpdated', self.update_config)
+        self.event_bus.subscribe('Connect', self.connect)
+        self.event_bus.subscribe('Disconnect', self.disconnect)
+        self.event_bus.subscribe('StartLogging',self.start_logging)
+        self.event_bus.subscribe('StopLogging',self.stop_logging)
+
 
     
     def read_ip(self):
@@ -21,12 +30,22 @@ class OpcClient():
         
         return config['server_ip'] + ':' + config['port']
         
-    def connect(self):
-        pass
+    def connect(self, empty_data):
+        self.event_bus.publish('StatusUpdate', {'status':'Connecting...'})
+        self.status = 'Connecting'
+        #code for opc connection
+
     
-    def disconnect(self):
-        pass
+    def disconnect(self, empty_data):
+        self.event_bus.publish('StatusUpdate', {'status':'Disconnected'})
+        # code for opc disconnection
     
+    def start_logging(self, empty_data):
+        pass
+
+    def stop_logging(self, empty_data):
+        pass
+
     def read_tags(self, tag_list):
         pass
     
@@ -36,5 +55,9 @@ class OpcClient():
     def get_status(self):
         pass
 
-    def hanle_error(self):
+    def handle_error(self):
         pass
+
+    def update_config(self,config):
+        self.ip             = config['server_ip']
+        self.logging_freq   = config['logging_freq']

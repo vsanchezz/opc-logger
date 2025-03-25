@@ -11,9 +11,10 @@ class ContainerFrame(ctk.CTkFrame):
         self.event_bus_mw.subscribe("MainClicked", self.showMainFrame)
         self.event_bus_mw.subscribe("SettingsClicked", self.showSettingsFrame)
 
-
         self.container_main = ContainerMain(self)
+        
         self.container_settings = ContainerSettings(self)
+        self.event_bus_mw.subscribe('ConfigUpdated', self.container_settings.update_config)
 
         self.showMainFrame({})
     
