@@ -35,7 +35,7 @@ class ContainerMain(ctk.CTkFrame):
         self.stop_button = ctk.CTkButton(
             self.control_panel,
             text="Stop Logging",
-            #command=self.stop_logging,
+            command=self.stop_logging,
             state="disabled",
             width=120
         )
