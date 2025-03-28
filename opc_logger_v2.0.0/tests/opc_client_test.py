@@ -29,3 +29,8 @@ opc_client.stop_logging({})
 print("Disconnecting...")
 opc_client.disconnect({})
 print("Test completed successfully")
+
+
+''' ejemplo de respuesta del servidor 
+{'GVL_var_bool': False, 'GVL_var_int': 0, 'GVL_var_real': 0.0, 'GVL_var_string': '', 'GVL_var_array': [False, False, False, False], 'timestamp': '2025-03-26T21:25:16.296532'}
+'''
