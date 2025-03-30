@@ -61,7 +61,7 @@ class MainWindow(ctk.CTk):
             fg_color = 'transparent'
         )
         self.sidebar.pack(side="left", fill="y")
-
+        
         # Contenedor para los frames de contenido
         self.container_frame = ContainerFrame(
             self.central_frame, 
@@ -73,7 +73,7 @@ class MainWindow(ctk.CTk):
             fill="both", 
             expand=True,
         )
-    
+
     # Frame inferior
         self.inferior_frame = ctk.CTkFrame(self.main_container, fg_color='white')
         self.inferior_frame.pack(side = 'top', fill = 'x')
@@ -113,7 +113,8 @@ class MainWindow(ctk.CTk):
     # echo from event_bus to event_bus_mw
     def setup_echoes_to_mw(self):
         events_to_echo = [
-            'StatusUpdate'
+            'StatusUpdate',
+            'UpdateLog'
             ]
         for event in events_to_echo:
             # Esto crea una nueva función que es equivalente a:

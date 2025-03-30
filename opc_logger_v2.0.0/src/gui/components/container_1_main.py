@@ -1,4 +1,5 @@
 import customtkinter as ctk
+from src.gui.components.log_frame           import LogFrame
 
 class ContainerMain(ctk.CTkFrame):
     def __init__(self, master, **kwargs):
@@ -43,25 +44,29 @@ class ContainerMain(ctk.CTkFrame):
 
         # Visualization area
         self.data_frame = ctk.CTkFrame(self, corner_radius=0)
-        self.data_frame.pack(fill="both", expand=True, padx=(0,0), pady=00)
+        self.data_frame.pack(fill="both", expand=True, padx=(0,0), pady=0)
 
         # Etiqueta para el área de datos
         self.data_label = ctk.CTkLabel(
             self.data_frame,
             text="Collected Data:",
             anchor="w",
-            
+            height=40
         )
         self.data_label.pack(anchor="w", padx=10, pady=5)
 
         # Área de texto para mostrar datos
+        '''
         self.data_text = ctk.CTkTextbox(
             self.data_frame,
             wrap="none",
             font=("Consolas", 12)
         )
         self.data_text.pack(fill="both", expand=True, padx=10, pady=5)
-    
+        '''
+        self.log_frame = LogFrame(self.data_frame, self.event_bus_mw)
+        self.log_frame.pack(fill="both", expand=True, padx=10, pady=5)
+        #'''
     def toggle_connection(self):
         if (self.connect_button.cget('text') == 'Connect') :
             self.connect_button.configure(text='Disconnect')

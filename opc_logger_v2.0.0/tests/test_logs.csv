@@ -1,0 +1,11 @@
+date,time,GVL_var_array,GVL_var_bool,GVL_var_int,GVL_var_real,GVL_var_string
+2025-03-28,07:31:03,"[False, False, True, False]",True,62,32.42,Random
+2025-03-28,07:31:04,"[True, True, False, False]",True,2,28.99,Test
+2025-03-28,07:31:05,"[True, True, False, True]",True,79,4.96,World
+2025-03-28,07:31:06,"[True, False, False, True]",True,89,24.59,World
+2025-03-28,07:31:07,"[True, True, True, False]",True,17,68.91,Hello
+2025-03-28,07:31:08,"[False, True, False, True]",True,98,83.9,World
+2025-03-28,07:31:09,"[False, True, False, True]",True,66,91.69,Random
+2025-03-28,07:31:10,"[False, False, True, False]",False,55,8.82,Test
+2025-03-28,07:31:11,"[False, True, False, False]",True,56,36.59,Hello
+2025-03-28,07:31:12,"[False, False, False, False]",True,5,53.54,Hello

@@ -1,4 +1,4 @@
-from opcua import Client, ua
+from opcua import Client
 from datetime import datetime
 import time
 import threading
@@ -62,6 +62,7 @@ class OpcClient():
 
             return True
         except Exception as e:
+            self.event_bus.publish('StatusUpdate', {'status':'Disconnected'})
             print(f"Connection failed: {e}")
             return False
 
