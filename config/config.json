@@ -1,5 +1,5 @@
 {
-    "server_ip": "opc.tcp://10.0.0.92",
+    "server_ip": "10.0.0.92",
     "port": "4840",
     "logging_freq": "1",
     "output_folder": "data",
