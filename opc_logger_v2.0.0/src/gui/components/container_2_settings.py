@@ -4,43 +4,63 @@ class ContainerSettings(ctk.CTkFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master, corner_radius=0, **kwargs)
 
-        # Frame para configuración del servidor
         self.event_bus_mw = master.event_bus_mw
-        self.server_frame = ctk.CTkFrame(self, fg_color = 'transparent')
-        self.server_frame.pack(fill="both", padx=10, pady=5)
+
+        # frame para campos de configuracion
+        self.config_frame = ctk.CTkFrame(self, fg_color = 'transparent')
+        self.config_frame.pack(fill='both', padx = 10, pady = 5)
+
+        # Configurar las columnas del grid con los anchos especificados
+        self.config_frame.grid_columnconfigure(0, weight=1, minsize=200)  # Primera columna: ancho mínimo 200
+        self.config_frame.grid_columnconfigure(1, weight=1, minsize=300)  # Segunda columna: ancho mínimo 300
+        self.config_frame.grid_columnconfigure(2, weight=1, minsize=100)  # Tercera columna: ancho mínimo 100
+
+        for i in range(3):  # Tres filas
+            self.config_frame.grid_rowconfigure(i, weight=1)
 
         # Etiqueta para la dirección del servidor
-        self.server_label = ctk.CTkLabel(
-            self.server_frame,
+        self.server_ip_label = ctk.CTkLabel(
+            self.config_frame,
             text="OPC Server Address:",
-            anchor="w"
+            justify="left",
         )
-        self.server_label.pack(anchor="w", padx=0, pady=5)
+        self.server_ip_label.grid(row=0, column=0, padx=10, pady=5, sticky="w")
 
         # Campo para la dirección del servidor
         self.server_ip_entry = ctk.CTkEntry(
-            self.server_frame,
-            width=300,
-            placeholder_text="opc.tcp://localhost:4840"
+            self.config_frame,
         )
-        self.server_ip_entry.pack(anchor="w", padx=10, pady=5)
+        self.server_ip_entry.grid(row=0, column=1, padx=0, pady=5, sticky="nsew")
 
         # Etiqueta para la frecuencia del logging
         self.freq_label = ctk.CTkLabel(
-            self.server_frame,
+            self.config_frame,
             text="Logging frequency (s):",
-            anchor="w"
+            justify="left",
         )
-        self.freq_label.pack(anchor="w", padx=0, pady=5)
+        self.freq_label.grid(row=1, column=0, padx=10, pady=5, sticky="w")
 
         # Campo para la frequencia del logging
         self.freq_entry = ctk.CTkEntry(
-            self.server_frame,
-            width=300,
+            self.config_frame,
         )
-        self.freq_entry.pack(anchor="w", padx=10, pady=5)
+        self.freq_entry.grid(row=1, column=1, padx=0, pady=5, sticky="nsew")
 
-        # Frame para selección de variables
+        # Etiqueta para el path de la carpeta donde se guardaran los archivos csv
+        self.path_label = ctk.CTkLabel(
+            self.config_frame,
+            text="Data path:",
+            justify="left",
+        )
+        self.path_label.grid(row=2, column=0, padx=10, pady=5, sticky="w")
+
+        # Campo para el path de la carpeta donde se guardaran los archivos csv
+        self.path_entry = ctk.CTkEntry(
+            self.config_frame,
+        )
+        self.path_entry.grid(row=2, column=1, padx=0, pady=5, sticky="nsew")
+
+        ### Frame para selección de variables
         self.variables_frame = ctk.CTkFrame(self, fg_color = 'transparent')
         self.variables_frame.pack(fill="both", expand=True, padx=10, pady=10)
 

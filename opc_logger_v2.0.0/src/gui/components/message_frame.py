@@ -22,7 +22,6 @@ class MessageFrame(ctk.CTkFrame):
         self.message_lock = threading.Lock()
 
         # subscribe to events to show messages
-        #self.event_bus_mw.subscribe("MainClicked", self.show_message, 'Main clicked')
         self.event_bus_mw.subscribe("SaveConfiguration",self.show_message,'Configuration saved')
         
 
