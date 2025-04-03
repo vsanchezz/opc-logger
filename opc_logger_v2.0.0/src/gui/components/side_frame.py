@@ -32,6 +32,19 @@ class SideFrame(ctk.CTkFrame):
         )
         self.settings_button.pack(pady=5)
 
+        self.monitor_button = ctk.CTkButton(
+            self,
+            text="Activity",
+            command = self.monitor_clicked,
+            width=180,
+            height=40,
+            corner_radius=0,
+            fg_color="transparent",
+            text_color=("gray10", "gray90"),
+            hover_color=("gray70", "gray30")
+        )
+        self.monitor_button.pack(pady=5)
+
         # Resaltar el botón activo por defecto
         self.update_active_button("main")
 
@@ -43,7 +56,12 @@ class SideFrame(ctk.CTkFrame):
         self.event_bus_mw.publish("SettingsClicked",{})
         self.update_active_button("settings")
     
+    def monitor_clicked(self):
+        self.event_bus_mw.publish("MonitorClicked",{})
+        self.update_active_button("monitor")
+    
     def update_active_button(self, frame_name):
         """Actualizar el estilo del botón activo"""
         self.main_button.configure(fg_color=("gray75", "gray10") if frame_name == "main" else "transparent")
         self.settings_button.configure(fg_color=("gray75", "gray10") if frame_name == "settings" else "transparent")
+        self.monitor_button.configure(fg_color=("gray75", "gray10") if frame_name == "monitor" else "transparent")

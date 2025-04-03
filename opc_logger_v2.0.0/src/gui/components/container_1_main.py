@@ -80,8 +80,9 @@ class ContainerMain(ctk.CTkFrame):
         if data['status'] == 'Connected' :
             self.start_button.configure(state='enabled')
         
-        elif data['status'] == 'Disconnected' :
+        else:
             self.start_button.configure(state='disabled')
+            self.connect_button.configure(text='Connect')
 
     def start_logging(self):
         self.start_button.configure(state='disabled')

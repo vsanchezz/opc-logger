@@ -81,7 +81,7 @@ class OpcClient():
 
     def update_config(self,config):
         self.server_ip      = config['server_ip']
-        self.logging_freq   = config['logging_freq']
+        self.logging_freq   = int(config['logging_freq'])
     
     def read_values(self) -> Dict[str, Any]:
         try:
@@ -132,7 +132,7 @@ class OpcClient():
                 target=self.logging_loop,
             )
             self.logging_thread.start()
-            print(f"Logging started with self.logging_freq of {self.logging_freq} seconds")
+            print(f"Logging started with logging_freq of {self.logging_freq} seconds")
             return True
         return False
 
