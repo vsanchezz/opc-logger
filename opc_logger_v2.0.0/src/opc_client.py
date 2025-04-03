@@ -69,9 +69,7 @@ class OpcClient():
     
     def disconnect(self, empty_data):
         try:
-            if self.client:
-                self.client.disconnect()
-                self.client = None
+            self.client.disconnect()            
             self.status = 'Disconnected'
             self.event_bus.publish('StatusUpdate', {'status':'Disconnected'})
             return True
@@ -83,7 +81,7 @@ class OpcClient():
         self.server_ip      = config['server_ip']
         self.logging_freq   = int(config['logging_freq'])
     
-    def read_values(self) -> Dict[str, Any]:
+    def read_values(self):
         try:
             readings = {}
 
@@ -141,6 +139,4 @@ class OpcClient():
         self.is_logging = False
         if self.logging_thread:
             self.logging_thread.join()
-        if self.client:
-            self.client.disconnect()
         print("Logging stopped")
