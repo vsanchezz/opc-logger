@@ -48,18 +48,25 @@ class LogFrame(ctk.CTkFrame):
             self.clear_table()
             return
 
-        # Detectar columnas dinámicamente
-        self.columns = list(logs[0].keys())  # Obtener las claves del primer registro
-        self.data = logs  # Actualizar los datos
+        # Detectar columnas dinámicamente solo si cambian
+        if not self.columns or self.columns != list(logs[0].keys()):
+            self.columns = list(logs[0].keys())  # Obtener las claves del primer registro
+            self.tree["columns"] = self.columns
+            for col in self.columns:
+                self.tree.heading(col, text=col)  # Configurar encabezados
+                self.tree.column(col, anchor="center", width=150)  # Configurar ancho y alineación
 
-        # Configurar las columnas en el Treeview
-        self.tree["columns"] = self.columns
-        for col in self.columns:
-            self.tree.heading(col, text=col)  # Configurar encabezados
-            self.tree.column(col, anchor="center", width=150)  # Configurar ancho y alineación
+        # Obtener los valores actuales en el Treeview
+        existing_items = set(
+            tuple(str(value) for value in self.tree.item(item, "values"))  # Convertir todos los valores a cadenas
+            for item in self.tree.get_children()
+        )
 
-        # Mostrar el contenido actualizado
-        self.display()
+        # Agregar solo los nuevos datos
+        for row in logs:
+            values = tuple(str(row.get(col, "")) for col in self.columns)  # Convertir todos los valores a cadenas
+            if values not in existing_items:  # Solo agregar si no está ya en el Treeview
+                self.tree.insert("", "end", values=values)
 
     def display(self):
         """

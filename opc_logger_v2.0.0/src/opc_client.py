@@ -108,7 +108,7 @@ class OpcClient():
                 values = self.read_values()
                 if values:
                     self.event_bus.publish('NewReading', values)
-                    print(values)
+                    #print(values)
                 time.sleep(self.logging_freq)
             except Exception as e:
                 print(f"Error in logging loop: {e}")

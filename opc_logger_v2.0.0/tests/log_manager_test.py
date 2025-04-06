@@ -3,8 +3,11 @@ import random
 from datetime import datetime
 import os
 import sys
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-sys.path.append('/Users/victor/Downloads/OneDrive_1_17-3-2025/opc_logger_v2.0.0/src')
+
+# Agregar el directorio src al path
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.join(project_root, "src"))
+sys.path.append(os.path.join(project_root, "src\gui\components"))
 
 from log_manager import LogManager  # Asegúrate de que LogManager esté en un archivo llamado log_manager.py
 
@@ -21,7 +24,7 @@ class EventEmitter:
             self.listeners[event_name] = []
         self.listeners[event_name].append(callback)
 
-    def emit(self, event_name, data):
+    def publish(self, event_name, data):
         """
         Emite un evento y notifica a todos los callbacks registrados.
         """
@@ -50,7 +53,7 @@ def generate_random_data():
 for i in range(10):
     data = generate_random_data()
     print(f"Publicando evento NewReading: {data}")
-    event_emitter.emit('NewReading', data)
+    event_emitter.publish('NewReading', data)
     time.sleep(1)  # Esperar 1 segundo
 
 # Imprimir el log actual

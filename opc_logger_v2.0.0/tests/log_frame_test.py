@@ -5,9 +5,12 @@ import customtkinter as ctk
 
 import os
 import sys
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-sys.path.append('/Users/victor/Downloads/OneDrive_1_17-3-2025/opc_logger_v2.0.0/src/gui/components')
-sys.path.append('/Users/victor/Downloads/OneDrive_1_17-3-2025/opc_logger_v2.0.0/src')
+
+# Agregar el directorio src al path
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.join(project_root, "src"))
+sys.path.append(os.path.join(project_root, "src\gui\components"))
+
 
 from log_manager import LogManager
 from log_frame import LogFrame
