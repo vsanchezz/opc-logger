@@ -12,6 +12,7 @@ class LogManager:
         # subscription to events
         self.event_bus.subscribe('NewReading', self.add_log)
         self.event_bus.subscribe('PrintLog', self.print_log)
+        self.event_bus.subscribe('ExportCsv',self.export_to_csv,'nombre_archivo')
 
     def add_log(self, data):
         """

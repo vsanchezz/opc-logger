@@ -102,7 +102,8 @@ class MainWindow(ctk.CTk):
             'Connect',
             'Disconnect',
             'StartLogging',
-            'StopLogging'
+            'StopLogging',
+            'ExportCsv'
             ]
         for event in events_to_echo:
             # Esto crea una nueva función que es equivalente a:

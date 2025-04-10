@@ -42,6 +42,16 @@ class ContainerMain(ctk.CTkFrame):
         )
         self.stop_button.pack(side="left", padx=10, pady=10)
 
+        # Export csv button
+        self.export_button = ctk.CTkButton(
+            self.control_panel,
+            text="Export csv",
+            command= lambda: self.event_bus_mw.publish('ExportCsv',{}),
+            state="disabled",
+            width=120
+        )
+        self.export_button.pack(side="left", padx=10, pady=10)
+
         # Visualization area
         self.data_frame = ctk.CTkFrame(self, corner_radius=0)
         self.data_frame.pack(fill="both", expand=True, padx=(0,0), pady=0)
@@ -93,5 +103,4 @@ class ContainerMain(ctk.CTkFrame):
         self.start_button.configure(state='enabled')
         self.stop_button.configure(state='disabled')
         self.event_bus_mw.publish('StopLogging',{})
-        
-
+    
